@@ -3,18 +3,42 @@ class Base1:
         self.a=a
         self.b=b
         print("Base1 class constructor..")
-
-    def display1(self):
+    def display(self):
         print("a:\t",self.a)
-        print("a:\t",self.b)
+        print("b:\t",self.b)
 
 class Base2:
-    def display2(self):
+    def __init__(self,i,j):
+        self.i=i
+        self.j=j
+        print("base2 class constructor")
+
+    def display(self):
         print("Base2 display2...")
+        print("i:\t",self.i)
+        print("j:\t",self.j)
 
 class Child(Base1,Base2):
-    pass
+    def __init__(self,a,b,c,d,i,j):
+        #self=1002
+        #a=100, b=200, c=300 , d=400
+        #Base1.__init__(self,a,b)
+        super().__init__(a,b)
+        Base2.__init__(self,i,j)
+        self.c=c
+        self.d=d
+        print("Child class constructor..")
 
-c1=Child(100,200)
-c1.display1()
-c1.display2()
+    def display(self):
+        #self=c1
+        #Base1.display(self)
+        super().display()
+        Base2.display(self)
+        print("c:\t",self.c)
+        print("d:\t",self.d)
+    
+    
+    
+c1=Child(100,200,300,400,500,600)
+c1.display() 
+
